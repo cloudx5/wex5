@@ -21,7 +21,7 @@
     "volumes": []
   },
   "env": {
-    "SERVICE_NAME": "bex5",
+    "SERVICE_NAME": "wex5",
     "SERVICE_TAGS": "haproxy,http,route_domain,weight=50",
     "SERVICE_CHECK_HTTP": "/status"
   },
