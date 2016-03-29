@@ -2,13 +2,13 @@
 
 cd `dirname $0`
 HOME=$PWD
+LIB_PATH="$HOME/runtime/BaasServer/WEB-INF/lib"
 SRC_PATH="/mnt/mesos/sandbox"
 
 echo "当前目录路径为[HOME]：$HOME"
 
-if [ -d "$SRC_PATH/model" ];then
+if [ -d "$SRC_PATH/model/UI2" ];then
   echo "正在更新 model..."
-  rm -rf $HOME/model
   mv -f $SRC_PATH/model $HOME
 
   echo "model 更新完毕"
@@ -27,6 +27,8 @@ if [ -d "$SRC_PATH/doc" ];then
   echo "doc 更新完毕"
   echo ""
 fi
+
+[ -f "$SRC_PATH/baas/baas_model_service.jar" ] && mv $SRC_PATH/baas/baas_model_service.jar $LIB_PATH
 
 cd $HOME/mysql/bin
 ./startup.sh &
