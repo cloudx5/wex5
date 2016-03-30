@@ -4,6 +4,7 @@ cd `dirname $0`
 HOME=$PWD
 LIB_PATH="$HOME/runtime/BaasServer/WEB-INF/lib"
 SRC_PATH="/mnt/mesos/sandbox"
+LOG_PATH="$SRC_PATH/sqlload_`date +%Y%m%d%H%M%S`.log"
 
 echo "当前目录路径为[HOME]：$HOME"
 
@@ -53,7 +54,7 @@ load_script(){
   cat $TMP
 
   START_TIME=$(date "+%s")
-  ./mysql -uroot -px5 x5 -ve "source $TMP" >/mnt/mesos/sandbox/sqlload.log 2>&1
+  ./mysql -uroot -px5 x5 -ve "source $TMP" >$LOG_PATH 2>&1
   if [ $? -eq 0 ];then
     echo "[$?]脚本导入成功！共计用时: " `expr $(date "+%s") - ${START_TIME}` " 秒"
   else
